@@ -1,0 +1,46 @@
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+
+def configDir = "${rootProject.rootDir}/config/quality"
+def reportsDir = "${rootProject.buildDir}/reports/quality"
+
+checkstyle {
+  toolVersion '8.4'
+  showViolations false
+}
+
+task checkstyle(type: Checkstyle) {
+  configFile file("$configDir/checkstyle/checkstyle.xml")
+  configProperties.checkstyleSuppressionsPath = file("$configDir/checkstyle/suppressions.xml").absolutePath
+  configProperties.checkstyleCacheFile = file("$reportsDir/checkstyle.cache").absolutePath
+  source 'src/main/java' // 以后加入单元测试以后换成src
+  include '**/*.java'
+  exclude '**/gen/**'
+
+
+  // empty classpath
+  classpath = files()
+
+  reports {
+    xml.enabled = false
+    html.enabled = true
+  }
+  showViolations false
+}
+
+task pmd(type: Pmd) {
+  ignoreFailures = false
+  ruleSetFiles = files("$configDir/pmd/ruleset.xml")
+  ruleSets = []
+
+  source 'src/main/java' // 以后加入单元测试以后换成src
+  include '**/*.java'
+  exclude '**/gen/**'
+
+  reports {
+    xml.enabled = false
+    html.enabled = true
+  }
+}
+
+check.dependsOn 'checkstyle', 'pmd'

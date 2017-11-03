@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+    "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+<suppressions>
+  <suppress checks="[a-zA-Z0-9]*" files="Test" />
+  <suppress checks="[a-zA-Z0-9]*" files="Dagger*" />
+  <suppress checks="[a-zA-Z0-9]*" files=".*_.*Factory.java" />
+  <suppress checks="[a-zA-Z0-9]*" files=".*ViewInjector.java" />
+  <suppress checks="[a-zA-Z0-9]*" files=".*_MembersInjector.java" />
+
+
+  <!--1. 对某个java文件，忽略某项或多项检查规则-->
+  <suppress checks="LocalVariableName" files="[\\/]CertainSuppressionWarningClass\.java$" />
+
+  <!--2.对某个java文件，忽略所有检查规则-->
+  <!--<suppress checks="[a-zA-Z0-9]*" files="[\\/]CertainSuppressionWarningClass\.java$" />-->
+
+  <!--3.对某个包下的所有java文件，忽略某项或多项检查规则-->
+  <!--<suppress checks="LocalVariableName" files="io.github.*" />-->
+
+  <!--4.对某个包下的所有java文件，忽略所有检查规则-->
+  <!--<suppress checks="[a-zA-Z0-9]*" files="io.github.*" />-->
+
+  <!--5.对于某一个文件内一部分需要忽略一些规则，可以在源文件内使用SuppressWarning-->
+  <!--@SuppressWarning()-->
+</suppressions>
