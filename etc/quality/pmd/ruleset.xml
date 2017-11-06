@@ -7,7 +7,6 @@
   <description>Mooyoo Android ruleset</description>
   <!--1、命名风格-->
   <rule ref="rulesets/java/ali-naming.xml" />
-
   <!--2、常量定义-->
   <rule ref="rulesets/java/ali-constant.xml" />
 
@@ -33,4 +32,13 @@
 
   <!--9、其他-->
   <!--<rule ref="rulesets/java/ali-exception.xml"/>-->
+
+  <!--10、忽略检查-->
+  <exclude-pattern>.*/R.java</exclude-pattern>
+  <exclude-pattern>.*/gen/.*</exclude-pattern>
+  <!--<rule ref="rulesets/java/ali-naming.xml">-->
+    <!--<properties>-->
+      <!--<property name="violationSuppressRegex" value=".*Name.*"/>-->
+    <!--</properties>-->
+  <!--</rule>-->
 </ruleset>

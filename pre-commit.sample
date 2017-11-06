@@ -17,9 +17,9 @@ fi
 
 SCRIPT_DIR=$(dirname "$0")
 SCRIPT_ABS_PATH=`cd "$SCRIPT_DIR"; pwd`
-$SCRIPT_ABS_PATH/../../gradlew checkstyle
+$SCRIPT_ABS_PATH/../../gradlew checkstyle pmd
 if [ $? -eq 0   ]; then
-    echo "checkstyle OK"
+    echo "checkstyle and pmd passed"
 else
     exit 1
 fi

@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply from: '../config/quality.gradle'
+apply from: '../etc/quality.gradle'
 
 android {
     compileSdkVersion 26
@@ -27,5 +27,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation 'com.alibaba.p3c:p3c-pmd:1.3.0'
+    pmd 'com.alibaba.p3c:p3c-pmd:1.3.1'
 }

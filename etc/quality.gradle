@@ -1,8 +1,9 @@
 apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 
-def configDir = "${rootProject.rootDir}/config/quality"
+def configDir = "${rootProject.rootDir}/etc/quality"
 def reportsDir = "${rootProject.buildDir}/reports/quality"
+
 
 checkstyle {
   toolVersion '8.4'
@@ -10,13 +11,12 @@ checkstyle {
 }
 
 task checkstyle(type: Checkstyle) {
-  configFile file("$configDir/checkstyle/checkstyle.xml")
+  configFile file("$configDir/checkstyle/checkstyle-for-task.xml")
   configProperties.checkstyleSuppressionsPath = file("$configDir/checkstyle/suppressions.xml").absolutePath
   configProperties.checkstyleCacheFile = file("$reportsDir/checkstyle.cache").absolutePath
   source 'src/main/java' // 以后加入单元测试以后换成src
   include '**/*.java'
   exclude '**/gen/**'
-
 
   // empty classpath
   classpath = files()
@@ -25,7 +25,13 @@ task checkstyle(type: Checkstyle) {
     xml.enabled = false
     html.enabled = true
   }
-  showViolations false
+  showViolations true
+}
+
+pmd {
+  toolVersion = '5.5.2' // 避免使用比较旧的版本，需要指定pmd的版本
+  ignoreFailures = false
+  ruleSetConfig = resources.text.fromFile("$configDir/pmd/ruleset.xml")
 }
 
 task pmd(type: Pmd) {
